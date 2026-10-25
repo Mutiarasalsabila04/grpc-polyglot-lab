@@ -1,4 +1,39 @@
-# Hands-on: Komunikasi Inter-service dengan gRPC (Polyglot)
+## LAPORAN PARADIGMA SISTEM UNTUK IT
+
+### Disusun Oleh:  
+Nama               : Mutiara Salsabila  
+NIM                : 2024903430060  
+Kelas              : TRKJ 3C
+
+
+### Program Studi Teknologi Rekayasa Komputer Jaringan
+### Jurusan Teknologi Informasi dan Komputer
+### Politeknik Negeri Lhokseumawe
+### 2026
+
+
+---
+
+
+## Lembar Pengesahan
+
+
+| No. Praktikum     | : | 05 |
+|------------------:|:-:|:--------------|
+| Judul Praktikum   | : | Hands-on: Komunikasi Inter-service dengan gRPC (Polyglot) |
+| Tanggal Praktikum | : | 19 Oktober 2026 |
+| Tanggal Penyerahan| : | 19 Oktober 2026 |
+| Nama Praktikan    | : | Mutiara Salsabila |
+| NIM/Kelas Praktikan| : |2024903430060 / TRKJ 3C |
+| Nilai Praktikum   | : | .......................... |
+| Dosen Pengampu    | : | Muhammad Reza Zulman, S.ST., M.Sc |
+
+Mengetahui,  
+Dosen Pengampu
+<br><br><br><br><br>
+
+Muhammad Reza Zulman, S.ST., M.Sc
+</div>`
 
 ## 1. Deskripsi Praktikum
 
