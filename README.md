@@ -55,97 +55,96 @@ Muhammad Reza Zulman, S.ST., M.Sc
 
 Praktikum ini bertujuan untuk:
 
-Memahami konsep komunikasi antar-layanan (inter-service communication) menggunakan gRPC.
+    Memahami konsep komunikasi antar-layanan (inter-service communication) menggunakan gRPC.
 
-Memahami penggunaan Protocol Buffers untuk mendefinisikan pesan dan layanan.
+    Memahami penggunaan Protocol Buffers untuk mendefinisikan pesan dan layanan.
 
-Mengimplementasikan Go Server sebagai penyedia layanan gRPC.
+    Mengimplementasikan Go Server sebagai penyedia layanan gRPC.
 
-Mengimplementasikan Python Client dan Node.js Client untuk berkomunikasi dengan server.
+    Mengimplementasikan Python Client dan Node.js Client untuk berkomunikasi dengan server.
 
-Menguji pertukaran data antara server dan client yang menggunakan bahasa pemrograman berbeda.
+    Menguji pertukaran data antara server dan client yang menggunakan bahasa pemrograman berbeda.
 
-Mengembangkan struktur pesan dengan menambahkan field nomor telepon.
+    Mengembangkan struktur pesan dengan menambahkan field nomor telepon.
 
-Menggunakan Git dan GitHub untuk mengelola serta menyimpan kode praktikum.
+    Menggunakan Git dan GitHub untuk mengelola serta menyimpan kode praktikum.
 
 ## DASAR TEORI
 
 1. gRPC
 
-gRPC merupakan kerangka kerja komunikasi jarak jauh yang memungkinkan suatu aplikasi memanggil metode yang disediakan oleh aplikasi lain melalui jaringan. Dalam praktikum ini, gRPC digunakan untuk menghubungkan Go Server dengan Python Client dan Node.js Client.
+    gRPC merupakan kerangka kerja komunikasi jarak jauh yang memungkinkan suatu aplikasi memanggil metode yang disediakan oleh aplikasi lain melalui jaringan. Dalam praktikum ini, gRPC digunakan untuk menghubungkan Go Server dengan Python Client dan Node.js Client.
 
-Go Server menyediakan metode GetUserProfile, sedangkan kedua client mengirimkan permintaan berdasarkan ID pengguna dan menerima respons dari server.
+    Go Server menyediakan metode GetUserProfile, sedangkan kedua client mengirimkan permintaan berdasarkan ID pengguna dan menerima respons dari server.
 
 2. Protocol Buffers
 
-Protocol Buffers atau Protobuf merupakan mekanisme untuk mendefinisikan struktur pesan dan layanan secara terstruktur. Definisi tersebut disimpan dalam file berekstensi .proto.
+    Protocol Buffers atau Protobuf merupakan mekanisme untuk mendefinisikan struktur pesan dan layanan secara terstruktur. Definisi tersebut disimpan dalam file berekstensi .proto.
 
-File user.proto digunakan sebagai kontrak komunikasi antara server dan client. Berdasarkan file ini, kode pendukung dapat dihasilkan untuk bahasa pemrograman yang digunakan.
+    File user.proto digunakan sebagai kontrak komunikasi antara server dan client. Berdasarkan file ini, kode pendukung dapat dihasilkan untuk bahasa pemrograman yang digunakan.
 
 3. Go
 
-Go merupakan bahasa pemrograman yang digunakan untuk membangun server pada praktikum ini. Go Server bertugas menerima permintaan, memproses ID pengguna, dan mengembalikan data pengguna melalui gRPC.
+    Go merupakan bahasa pemrograman yang digunakan untuk membangun server pada praktikum ini. Go Server bertugas menerima permintaan, memproses ID pengguna, dan mengembalikan data pengguna melalui gRPC.
 
 4. Python
 
-Python digunakan untuk membangun client pertama. Python Client menggunakan pustaka grpcio serta kode hasil generasi Protocol Buffers untuk mengirim permintaan dan menerima respons dari Go Server.
+    Python digunakan untuk membangun client pertama. Python Client menggunakan pustaka grpcio serta kode hasil generasi Protocol Buffers untuk mengirim permintaan dan menerima respons dari Go Server.
 
 5. Node.js
 
-Node.js merupakan lingkungan eksekusi JavaScript yang digunakan untuk membangun client kedua. Client menggunakan pustaka @grpc/grpc-js untuk komunikasi gRPC dan @grpc/proto-loader untuk membaca definisi layanan dari file .proto.
+    Node.js merupakan lingkungan eksekusi JavaScript yang digunakan untuk membangun client kedua. Client menggunakan pustaka @grpc/grpc-js untuk komunikasi gRPC dan @grpc/proto-loader untuk membaca definisi layanan dari file .proto.
 
 6. Git dan GitHub
 
-Git merupakan sistem pengelolaan versi yang digunakan untuk mencatat perubahan kode program. GitHub merupakan platform daring untuk menyimpan repository Git.
+    Git merupakan sistem pengelolaan versi yang digunakan untuk mencatat perubahan kode program. GitHub merupakan platform daring untuk menyimpan repository Git.
 
-Dalam praktikum ini, Git dan GitHub digunakan untuk mengelola serta menyimpan kode server, client, dan definisi layanan.
+    Dalam praktikum ini, Git dan GitHub digunakan untuk mengelola serta menyimpan kode server, client, dan definisi layanan.
 
 ## ALAT DAN BAHAN
 
 1. Perangkat Keras
 
-Laptop atau komputer.
+    Laptop atau komputer.
 
-Keyboard dan mouse.
+    Keyboard dan mouse.
 
-Koneksi internet.
+    Koneksi internet.
 
 2. Perangkat Lunak
 
-Sistem operasi Windows.
+    Sistem operasi Windows.
 
-Visual Studio Code.
+    Visual Studio Code.
 
-Go.
+    Go.
 
-Python.
+    Python.
 
-Node.js dan npm.
+    Node.js dan npm.
 
-Protocol Buffers Compiler (protoc).
+    Protocol Buffers Compiler (protoc).
 
-Plugin protoc-gen-go.
+    Plugin protoc-gen-go.
 
-Plugin protoc-gen-go-grpc.
+    Plugin protoc-gen-go-grpc.
 
-Pustaka Python grpcio dan grpcio-tools.
+    Pustaka Python grpcio dan grpcio-tools.
 
-Pustaka Node.js @grpc/grpc-js dan @grpc/proto-loader.
+    Pustaka Node.js @grpc/grpc-js dan @grpc/proto-loader.
 
-Git.
+    Git.
 
-GitHub.
+    GitHub.
 
 ## LANGKAH KERJA
 
 1. Persiapan Lingkungan Praktikum
+    Praktikum dilakukan pada sistem operasi Windows menggunakan Visual Studio Code sebagai editor kode dan terminal PowerShell untuk menjalankan perintah.
 
-Praktikum dilakukan pada sistem operasi Windows menggunakan Visual Studio Code sebagai editor kode dan terminal PowerShell untuk menjalankan perintah.
+    Perangkat lunak yang dibutuhkan disiapkan terlebih dahulu, meliputi Go, Python, Node.js, Git, dan Protocol Buffers Compiler. Setelah itu, proyek dibuat pada direktori grpc-polyglot-lab.
 
-Perangkat lunak yang dibutuhkan disiapkan terlebih dahulu, meliputi Go, Python, Node.js, Git, dan Protocol Buffers Compiler. Setelah itu, proyek dibuat pada direktori grpc-polyglot-lab.
-
-Struktur utama proyek terdiri atas file user.proto serta tiga direktori, yaitu go-server, python-client, dan node-client.
+    Struktur utama proyek terdiri atas file user.proto serta tiga direktori, yaitu go-server, python-client, dan node-client.
 
 2. Membuat File Protocol Buffers
 
