@@ -1,4 +1,8 @@
-## LAPORAN PARADIGMA SISTEM UNTUK IT
+<div align="center">
+
+## LAPORAN PARKTIKUM PARADIGMA SISTEM UNTUK IT
+
+![Logo PNL](img/logo-pnl.png)
 
 ### Disusun Oleh:  
 Nama               : Mutiara Salsabila  
@@ -20,157 +24,149 @@ Kelas              : TRKJ 3C
 
 | No. Praktikum     | : | 05 |
 |------------------:|:-:|:--------------|
-| Judul Praktikum   | : | Hands-on: Komunikasi Inter-service dengan gRPC (Polyglot) |
+| Judul Praktikum   | : | Hands-on: Komunikasi Inter-service dengan gRPC (Polyglot)|
 | Tanggal Praktikum | : | 19 Oktober 2026 |
 | Tanggal Penyerahan| : | 19 Oktober 2026 |
 | Nama Praktikan    | : | Mutiara Salsabila |
 | NIM/Kelas Praktikan| : |2024903430060 / TRKJ 3C |
 | Nilai Praktikum   | : | .......................... |
-| Dosen Pengampu    | : | Muhammad Reza Zulman, S.ST., M.Sc |
+| Dosen Pengampu    | : | Muhammad Reza Zulman, S.ST., M.Sc. |
 
 Mengetahui,  
 Dosen Pengampu
 <br><br><br><br><br>
 
 Muhammad Reza Zulman, S.ST., M.Sc
-</div>`
+</div>
 
-## 1. Deskripsi Praktikum
 
-Praktikum ini membahas implementasi komunikasi antar-layanan (*inter-service communication*) menggunakan gRPC dengan pendekatan *polyglot*, yaitu penggunaan beberapa bahasa pemrograman dalam satu sistem.
+## LAPORAN PARADIGMA SISTEM UNTUK IT
 
-Pada proyek ini, Go digunakan sebagai server, sedangkan Python dan Node.js digunakan sebagai client. Ketiga komponen berkomunikasi menggunakan gRPC dengan definisi pesan dan layanan yang disimpan dalam file `user.proto`.
+### Disusun Oleh:  
+Nama               : Mutiara Salsabila  
+NIM                : 2024903430060  
+Kelas              : TRKJ 3C
 
-Pada tahap pengembangan, struktur pesan `UserResponse` diperluas dengan menambahkan field `phone` untuk mengirimkan nomor telepon pengguna.
 
-## 2. Tujuan Praktikum
+### Program Studi Teknologi Rekayasa Komputer Jaringan
+### Jurusan Teknologi Informasi dan Komputer
+### Politeknik Negeri Lhokseumawe
+### 2026
 
-1. Memahami konsep komunikasi inter-service menggunakan gRPC.
-2. Memahami penggunaan Protocol Buffers untuk mendefinisikan pesan dan layanan.
-3. Membangun Go Server yang menyediakan layanan gRPC.
-4. Menghubungkan Python Client dengan Go Server.
-5. Menghubungkan Node.js Client dengan Go Server.
-6. Menambahkan field `phone` pada pesan respons.
-7. Menguji komunikasi antara server dan client yang menggunakan bahasa pemrograman berbeda.
-8. Mengelola kode program menggunakan Git dan GitHub.
+## Daftar Isi
+- [Lembar Pengesahan](#lembar-pengesahan)
+- [Daftar Isi](#daftar-isi)
+- [Tujuan Praktikum](#tujuan-praktikum)
+- [Dasar Teori](#dasar-teori)
+- [Alat dan Bahan](#alat-dan-bahan)
+- [Langkah Kerja](#langkah-kerja)
+- [Hasil dan Pembahasan](#hasil-dan-pembahasan)
+- [Kesimpulan](#kesimpulan)
+- [Referensi](#referensi)
 
-## 3. Alat dan Bahan
+---
+## TUJUAN PRAKTIKUM
 
-Perangkat lunak yang digunakan:
+Praktikum ini bertujuan untuk:
 
-- Windows
-- Visual Studio Code
-- Go
-- Python
-- Node.js dan npm
-- Protocol Buffers Compiler (`protoc`)
-- `protoc-gen-go`
-- `protoc-gen-go-grpc`
-- Python packages: `grpcio` dan `grpcio-tools`
-- Node.js packages: `@grpc/grpc-js` dan `@grpc/proto-loader`
-- Git
-- GitHub
+Memahami konsep komunikasi antar-layanan (inter-service communication) menggunakan gRPC.
 
-## 4. Arsitektur Sistem
+Memahami penggunaan Protocol Buffers untuk mendefinisikan pesan dan layanan.
 
-```text
-              +-----------------------+
-              |       Go Server       |
-              |     gRPC :50051       |
-              +-----------+-----------+
-                          |
-                 gRPC Request/Response
-                    /             \
-                   /               \
-       +-----------+-----+   +-----+-----------+
-       |  Python Client  |   |  Node.js Client |
-       +----------------+   +-----------------+
+Mengimplementasikan Go Server sebagai penyedia layanan gRPC.
 
-              Contract: user.proto
-```
+Mengimplementasikan Python Client dan Node.js Client untuk berkomunikasi dengan server.
 
-Go Server menyediakan layanan `UserService` dengan metode `GetUserProfile`. Python Client dan Node.js Client mengirimkan permintaan berdasarkan ID pengguna, kemudian menerima data dari server.
+Menguji pertukaran data antara server dan client yang menggunakan bahasa pemrograman berbeda.
 
-## 5. Struktur Direktori
+Mengembangkan struktur pesan dengan menambahkan field nomor telepon.
 
-```text
-grpc-polyglot-lab/
-├── .gitignore
-├── user.proto
-├── go-server/
-│   ├── go.mod
-│   ├── go.sum
-│   ├── main.go
-│   └── pb/
-│       ├── user.pb.go
-│       └── user_grpc.pb.go
-├── python-client/
-│   ├── .venv/
-│   ├── client.py
-│   ├── user_pb2.py
-│   └── user_pb2_grpc.py
-└── node-client/
-    ├── node_modules/
-    ├── client.js
-    ├── package.json
-    └── package-lock.json
-```
+Menggunakan Git dan GitHub untuk mengelola serta menyimpan kode praktikum.
 
-**Keterangan:**
+## DASAR TEORI
 
-- `user.proto`: definisi pesan dan layanan gRPC.
-- `go-server/main.go`: implementasi server.
-- `go-server/pb/`: kode Go hasil generasi Protocol Buffers.
-- `python-client/client.py`: implementasi Python Client.
-- `python-client/user_pb2.py`: kode pesan hasil generasi Protocol Buffers.
-- `python-client/user_pb2_grpc.py`: kode layanan gRPC untuk Python.
-- `node-client/client.js`: implementasi Node.js Client.
-- `.gitignore`: aturan file dan direktori yang tidak perlu disimpan ke Git.
+1. gRPC
 
-Folder `.venv` dan `node_modules` dibuat secara lokal dan tidak perlu diunggah ke repository.
+gRPC merupakan kerangka kerja komunikasi jarak jauh yang memungkinkan suatu aplikasi memanggil metode yang disediakan oleh aplikasi lain melalui jaringan. Dalam praktikum ini, gRPC digunakan untuk menghubungkan Go Server dengan Python Client dan Node.js Client.
 
-## 6. Langkah-Langkah Praktikum
+Go Server menyediakan metode GetUserProfile, sedangkan kedua client mengirimkan permintaan berdasarkan ID pengguna dan menerima respons dari server.
 
-### 6.1 Persiapan Lingkungan
+2. Protocol Buffers
 
-Pastikan Go, Python, Node.js, Git, dan `protoc` sudah terpasang.
+Protocol Buffers atau Protobuf merupakan mekanisme untuk mendefinisikan struktur pesan dan layanan secara terstruktur. Definisi tersebut disimpan dalam file berekstensi .proto.
 
-Periksa instalasi menggunakan terminal PowerShell:
+File user.proto digunakan sebagai kontrak komunikasi antara server dan client. Berdasarkan file ini, kode pendukung dapat dihasilkan untuk bahasa pemrograman yang digunakan.
 
-```powershell
-go version
-python --version
-node --version
-git --version
-protoc --version
-```
+3. Go
 
-Pastikan plugin Protocol Buffers untuk Go juga tersedia:
+Go merupakan bahasa pemrograman yang digunakan untuk membangun server pada praktikum ini. Go Server bertugas menerima permintaan, memproses ID pengguna, dan mengembalikan data pengguna melalui gRPC.
 
-```powershell
-protoc-gen-go --version
-protoc-gen-go-grpc --version
-```
+4. Python
 
-### 6.2 Membuat Struktur Proyek
+Python digunakan untuk membangun client pertama. Python Client menggunakan pustaka grpcio serta kode hasil generasi Protocol Buffers untuk mengirim permintaan dan menerima respons dari Go Server.
 
-Buat direktori utama proyek dengan nama `grpc-polyglot-lab`.
+5. Node.js
 
-Di dalamnya, buat direktori:
+Node.js merupakan lingkungan eksekusi JavaScript yang digunakan untuk membangun client kedua. Client menggunakan pustaka @grpc/grpc-js untuk komunikasi gRPC dan @grpc/proto-loader untuk membaca definisi layanan dari file .proto.
 
-```text
-go-server/
-python-client/
-node-client/
-```
+6. Git dan GitHub
 
-Buat file `user.proto` pada direktori utama.
+Git merupakan sistem pengelolaan versi yang digunakan untuk mencatat perubahan kode program. GitHub merupakan platform daring untuk menyimpan repository Git.
 
-### 6.3 Membuat Definisi Layanan gRPC
+Dalam praktikum ini, Git dan GitHub digunakan untuk mengelola serta menyimpan kode server, client, dan definisi layanan.
 
-Isi awal file `user.proto`:
+## ALAT DAN BAHAN
 
-```protobuf
+1. Perangkat Keras
+
+Laptop atau komputer.
+
+Keyboard dan mouse.
+
+Koneksi internet.
+
+2. Perangkat Lunak
+
+Sistem operasi Windows.
+
+Visual Studio Code.
+
+Go.
+
+Python.
+
+Node.js dan npm.
+
+Protocol Buffers Compiler (protoc).
+
+Plugin protoc-gen-go.
+
+Plugin protoc-gen-go-grpc.
+
+Pustaka Python grpcio dan grpcio-tools.
+
+Pustaka Node.js @grpc/grpc-js dan @grpc/proto-loader.
+
+Git.
+
+GitHub.
+
+## LANGKAH KERJA
+
+1. Persiapan Lingkungan Praktikum
+
+Praktikum dilakukan pada sistem operasi Windows menggunakan Visual Studio Code sebagai editor kode dan terminal PowerShell untuk menjalankan perintah.
+
+Perangkat lunak yang dibutuhkan disiapkan terlebih dahulu, meliputi Go, Python, Node.js, Git, dan Protocol Buffers Compiler. Setelah itu, proyek dibuat pada direktori grpc-polyglot-lab.
+
+Struktur utama proyek terdiri atas file user.proto serta tiga direktori, yaitu go-server, python-client, dan node-client.
+
+2. Membuat File Protocol Buffers
+
+File user.proto dibuat pada direktori utama proyek. File ini mendefinisikan pesan permintaan, pesan respons, dan layanan yang digunakan dalam komunikasi gRPC.
+
+Kode awal user.proto:
+
 syntax = "proto3";
 
 package user;
@@ -189,244 +185,220 @@ message UserResponse {
 service UserService {
     rpc GetUserProfile (UserRequest) returns (UserResponse);
 }
-```
 
-File tersebut mendefinisikan pesan permintaan `UserRequest`, pesan respons `UserResponse`, serta layanan `UserService`.
+Keterangan:
 
-Metode `GetUserProfile` digunakan untuk memperoleh profil pengguna berdasarkan ID.
+UserRequest berisi ID pengguna.
 
-### 6.4 Implementasi Go Server
+UserResponse berisi nama dan email pengguna.
 
-Masuk ke direktori Go Server:
+UserService mendefinisikan layanan gRPC.
 
-```powershell
-cd C:\Users\HP\grpc-polyglot-lab\go-server
-```
+GetUserProfile digunakan untuk meminta informasi pengguna.
 
-Inisialisasi modul Go jika belum tersedia:
+![proto](img/proto.png)
 
-```powershell
-go mod init go-server
-```
+Gambar 1. Definisi pesan dan layanan gRPC pada file user.proto.
 
-Jika `go.mod` sudah tersedia, lewati perintah inisialisasi.
+Foto yang digunakan: proto(1).png.
 
-Pasang dependensi gRPC:
+3. Implementasi Go Server
 
-```powershell
-go get google.golang.org/grpc
-go get google.golang.org/protobuf
-```
+Go Server dibuat di dalam direktori go-server. Server menyediakan metode GetUserProfile yang dapat dipanggil oleh client.
 
-Hasilkan kode Go dari file Protocol Buffers:
+Kode hasil generasi Protocol Buffers dibuat dengan perintah:
 
-```powershell
 protoc --proto_path=../ --go_out=. --go_opt=module=go-server --go-grpc_out=. --go-grpc_opt=module=go-server ../user.proto
-```
 
-Perintah tersebut menghasilkan:
+Perintah tersebut menghasilkan file user.pb.go dan user_grpc.pb.go pada direktori pb.
 
-- `pb/user.pb.go`
-- `pb/user_grpc.pb.go`
+Implementasi server ditulis dalam file main.go. Server membuka koneksi TCP pada port 50051, mendaftarkan layanan UserService, dan menunggu permintaan dari client.
 
-Implementasikan server pada `main.go`. Server mendengarkan koneksi pada port `50051` dan menyediakan metode `GetUserProfile`.
+![main.go](img/main_go.png)
 
-Periksa kompilasi:
+Gambar 2. Implementasi Go Server pada file main.go.
 
-```powershell
-go build .
-```
+Foto yang digunakan: main_go(1).png.
 
-Jalankan server:
+4. Menjalankan Go Server
 
-```powershell
-go run .
-```
+Server dijalankan dari direktori go-server menggunakan perintah:
 
-Output yang diharapkan:
+go run main.go
 
-```text
-gRPC Server (Go) berjalan di port 50051...
-```
+Ketika berhasil dijalankan, terminal menampilkan pesan bahwa gRPC Server berjalan pada port 50051. Server dibiarkan tetap berjalan selama proses pengujian client.
 
-Biarkan terminal server tetap berjalan selama pengujian client.
+![go server](img/go%20run%20main.go.png)
 
-### 6.5 Implementasi Python Client
+Gambar 3. Go Server berjalan pada port 50051 dan menerima permintaan dari client.
 
-Buka terminal baru, kemudian masuk ke direktori Python Client:
+Foto yang digunakan: go run main.go(1).png.
 
-```powershell
-cd C:\Users\HP\grpc-polyglot-lab\python-client
-```
+5. Implementasi Python Client
 
-Buat lingkungan virtual:
+Python Client dibuat pada direktori python-client. Kode pendukung Protocol Buffers dihasilkan menggunakan perintah:
 
-```powershell
-python -m venv .venv
-```
-
-Pasang dependensi:
-
-```powershell
-.\.venv\Scripts\python.exe -m pip install grpcio grpcio-tools
-```
-
-Hasilkan kode Python dari file `.proto`:
-
-```powershell
 .\.venv\Scripts\python.exe -m grpc_tools.protoc --proto_path=../ --python_out=. --grpc_python_out=. ../user.proto
-```
 
-Buat file `client.py` untuk membuka koneksi ke `localhost:50051`, memanggil `GetUserProfile` dengan `user_id=1`, dan menampilkan respons dari server.
+Perintah tersebut menghasilkan file user_pb2.py dan user_pb2_grpc.py.
 
-Jalankan client:
+Python Client menggunakan pustaka grpc untuk membuka koneksi ke localhost:50051. Client kemudian memanggil metode GetUserProfile dengan mengirimkan user_id=1.
 
-```powershell
-.\.venv\Scripts\python.exe client.py
-```
+![client.py](img/client_py.png)
 
-Hasil pengujian awal menunjukkan bahwa Python Client berhasil menerima nama dan email pengguna dari Go Server.
+Gambar 4. Implementasi Python Client pada file client.py.
 
-### 6.6 Implementasi Node.js Client
 
-Buka terminal baru dan masuk ke direktori Node.js Client:
+6. Implementasi Node.js Client
 
-```powershell
-cd C:\Users\HP\grpc-polyglot-lab\node-client
-```
+Node.js Client dibuat pada direktori node-client. Pustaka yang digunakan adalah @grpc/grpc-js dan @grpc/proto-loader.
 
-Inisialisasi proyek Node.js jika `package.json` belum tersedia:
+Client membaca definisi layanan dari file user.proto, membuat koneksi ke localhost:50051, kemudian memanggil metode GetUserProfile dengan ID pengguna 1.
 
-```powershell
-npm.cmd init -y
-```
+![client.js](img/client_js.png)
 
-Pasang dependensi:
+Gambar 5. Implementasi Node.js Client pada file client.js.
 
-```powershell
-npm.cmd install @grpc/grpc-js @grpc/proto-loader
-```
+7. Pengujian Awal Node.js Client
 
-Buat file `client.js`. Client menggunakan `@grpc/proto-loader` untuk membaca file `user.proto` dan `@grpc/grpc-js` untuk melakukan komunikasi gRPC.
+Setelah Go Server berjalan, Node.js Client dijalankan menggunakan perintah:
 
-Node.js Client terhubung ke `localhost:50051`, memanggil `GetUserProfile` dengan `user_id=1`, lalu menampilkan respons dari server.
-
-Jalankan client:
-
-```powershell
 node client.js
-```
 
-Hasil pengujian awal menunjukkan bahwa Node.js Client berhasil menerima nama dan email pengguna dari Go Server.
+Hasil pengujian awal menunjukkan bahwa client dapat menerima nama dan email pengguna dari server.
 
-### 6.7 Menambahkan Field Phone
+![pengujian node.js](img/node_client.js.png)
 
-Setelah komunikasi awal berhasil, file `user.proto` diperbarui untuk menambahkan field nomor telepon.
+Gambar 6. Hasil pengujian awal Node.js Client yang menampilkan nama dan email pengguna.
 
-Perubahan pada `UserResponse`:
+8. Pembuatan Kode Python
 
-```protobuf
+Untuk menggunakan definisi layanan dari user.proto, kode Python dibuat menggunakan grpc_tools.protoc. Proses ini menghasilkan kode pesan dan layanan yang diperlukan oleh Python Client.
+
+Perintah yang digunakan:
+
+.\.venv\Scripts\python.exe -m grpc_tools.protoc --proto_path=../ --python_out=. --grpc_python_out=. ../user.proto
+
+Setelah kode berhasil dibuat, file hasil generasi digunakan oleh client.py.
+
+![file](img/vnv.png)
+
+Gambar 7. Proses pembuatan kode Python berdasarkan file user.proto.
+
+9. Menambahkan Field Phone
+
+Setelah komunikasi awal berhasil, struktur pesan UserResponse dikembangkan dengan menambahkan field nomor telepon.
+
+Perubahan pada file user.proto:
+
 message UserResponse {
     string name = 1;
     string email = 2;
     string phone = 3;
 }
-```
 
-Simpan perubahan file tersebut.
+Field phone menggunakan nomor field 3, sedangkan field name dan email tetap menggunakan nomor 1 dan 2.
 
-**Regenerasi kode Go**
+Setelah perubahan disimpan, kode hasil generasi Go dan Python dibuat ulang. Go Server diperbarui untuk mengirimkan nomor telepon contoh 081234567890, sedangkan kedua client diperbarui untuk menampilkan nilai phone.
 
-Hentikan Go Server menggunakan `Ctrl + C`, lalu jalankan dari direktori `go-server`:
+Pengujian dilakukan kembali setelah server dijalankan ulang.
 
-```powershell
-protoc --proto_path=../ --go_out=. --go_opt=module=go-server --go-grpc_out=. --go-grpc_opt=module=go-server ../user.proto
-```
+Catatan: dokumentasi foto yang tersedia menunjukkan kode client yang sudah menampilkan phone, tetapi foto user.proto yang dikirim masih memperlihatkan struktur awal tanpa field phone. Karena itu, screenshot user.proto setelah perubahan perlu ditambahkan jika tersedia.
 
-Perbarui `main.go` agar respons pengguna dengan ID `1` menyertakan nomor telepon:
+10. Pengelolaan Proyek Menggunakan Git dan GitHub
 
-```go
-return &pb.UserResponse{
-    Name:  "Budi Santoso",
-    Email: "budi@universitas.ac.id",
-    Phone: "081234567890",
-}, nil
-```
+Proyek disimpan dalam repository GitHub dengan alamat:
 
-Nomor tersebut merupakan data contoh untuk praktikum.
+https://github.com/Mutiarasalsabila04/grpc-polyglot-lab
 
-Periksa kompilasi:
+Git digunakan untuk menambahkan file, membuat commit, dan mengelola branch. GitHub digunakan untuk menyimpan kode proyek secara daring.
 
-```powershell
-go build .
-```
+File proyek yang disimpan meliputi kode Go Server, Python Client, Node.js Client, file hasil generasi Protocol Buffers, serta file user.proto.
 
-**Regenerasi kode Python**
+## HASIL DAN PEMBAHASAN
 
-Masuk ke direktori `python-client` dan jalankan:
+1. Hasil Pengujian Go Server
 
-```powershell
-.\.venv\Scripts\python.exe -m grpc_tools.protoc --proto_path=../ --python_out=. --grpc_python_out=. ../user.proto
-```
+Go Server berhasil dijalankan pada port 50051. Terminal juga menunjukkan log permintaan yang diterima dari client dengan ID pengguna 1.
 
-Perbarui `client.py` agar menampilkan `response.phone`.
+Hal ini menunjukkan bahwa server telah berjalan dan menerima permintaan selama pengujian.
 
-**Pembaruan Node.js Client**
+Bukti pengujian ditampilkan pada Gambar 3.
 
-Node.js menggunakan `@grpc/proto-loader` untuk membaca definisi `.proto` saat program berjalan. Oleh karena itu, setelah `user.proto` diperbarui, sesuaikan `client.js` agar menampilkan `response.phone`.
+2. Hasil Pengujian Python Client
 
-### 6.8 Pengujian Setelah Penambahan Phone
+Python Client berhasil mengirim permintaan kepada Go Server menggunakan metode GetUserProfile. Setelah field phone ditambahkan dan kode diperbarui, output yang diharapkan adalah nama, email, dan nomor telepon pengguna.
 
-Jalankan kembali Go Server dari direktori `go-server`:
+Output akhir yang telah diperoleh saat pengujian:
 
-```powershell
-go run .
-```
-
-Biarkan server tetap berjalan.
-
-Pada terminal Python Client:
-
-```powershell
-cd C:\Users\HP\grpc-polyglot-lab\python-client
-.\.venv\Scripts\python.exe client.py
-```
-
-Pada terminal Node.js Client:
-
-```powershell
-cd C:\Users\HP\grpc-polyglot-lab\node-client
-node client.js
-```
-
-Kedua client diharapkan menerima nama, email, dan nomor telepon dari Go Server.
-
-## 7. Hasil Pengujian
-
-### 7.1 Python Client
-
-Output pengujian setelah penambahan field `phone`:
-
-```text
 Mengirim request ke Go Server menggunakan Python...
 Respon dari Server -> Nama: Budi Santoso, Email: budi@universitas.ac.id, Telepon: 081234567890
-```
 
-### 7.2 Node.js Client
+Hasil ini menunjukkan bahwa Python Client dapat menerima struktur respons yang telah diperluas.
 
-Output pengujian setelah penambahan field `phone`:
+3. Hasil Pengujian Node.js Client
 
-```text
+Node.js Client berhasil mengirim permintaan kepada Go Server dan menerima respons.
+
+Pada pengujian awal, terminal menampilkan nama dan email pengguna. Setelah penambahan field phone, client diperbarui untuk menampilkan nomor telepon.
+
+Output akhir yang telah diperoleh saat pengujian:
+
 Mengirim request ke Go Server menggunakan Node.js...
 Respon dari Server -> Nama: Budi Santoso, Email: budi@universitas.ac.id, Telepon: 081234567890
-```
 
-### 7.3 Analisis
+Hasil ini menunjukkan bahwa Node.js Client dapat menerima data dari Go Server setelah struktur pesan diperbarui.
 
-Hasil pengujian menunjukkan bahwa Go Server berhasil melayani permintaan dari Python Client dan Node.js Client. Kedua client menggunakan kontrak Protocol Buffers yang sama sehingga dapat membaca data respons dari server.
+4. Analisis
 
-Penambahan field `phone` berhasil diterapkan dengan memperbarui file `.proto`, menghasilkan ulang kode Go dan Python, serta menyesuaikan implementasi server dan client.
+Berdasarkan pengujian, Go Server dapat melayani permintaan dari Python Client dan Node.js Client menggunakan kontrak layanan yang sama.
 
-## 8. Pengelolaan Proyek Menggunakan Git dan GitHub
+Protocol Buffers membantu menyamakan struktur permintaan dan respons antarbahasa pemrograman. Penambahan field phone menunjukkan bahwa struktur pesan dapat dikembangkan sesuai kebutuhan, dengan memperbarui definisi .proto, menghasilkan ulang kode yang diperlukan, dan menyesuaikan implementasi server serta client.
 
-Proyek dikelola menggunakan Git
+Praktikum ini menerapkan pendekatan polyglot karena server dan client dikembangkan menggunakan bahasa pemrograman berbeda.
+
+5. Repository GitHub
+
+Proyek praktikum telah disimpan pada repository:
+
+https://github.com/Mutiarasalsabila04/grpc-polyglot-lab
+
+Repository menampilkan direktori go-server, python-client, dan node-client, serta file .gitignore dan user.proto.
+
+Repository tersebut menjadi tempat penyimpanan kode praktikum secara daring. Isi file perlu diperiksa untuk memastikan seluruh perubahan terbaru telah tersimpan.
+
+KESIMPULAN
+
+Berdasarkan praktikum yang telah dilakukan, dapat disimpulkan bahwa:
+
+gRPC dapat digunakan untuk membangun komunikasi antar-layanan melalui jaringan.
+
+Protocol Buffers digunakan untuk mendefinisikan pesan dan layanan yang dipakai bersama oleh server dan client.
+
+Go Server berhasil menyediakan layanan GetUserProfile pada port 50051.
+
+Python Client berhasil berkomunikasi dengan Go Server dan menerima data pengguna.
+
+Node.js Client berhasil mengakses layanan yang sama menggunakan bahasa pemrograman berbeda.
+
+Penambahan field phone berhasil diterapkan pada struktur pesan, server, dan kedua client.
+
+Git dan GitHub digunakan untuk mengelola serta menyimpan kode proyek secara daring.
+
+Dengan demikian, praktikum ini menunjukkan implementasi komunikasi inter-service menggunakan gRPC dengan pendekatan polyglot.
+
+## REFERENSI
+
+gRPC. gRPC Documentation. https://grpc.io/docs/
+
+Protocol Buffers. Protocol Buffers Documentation. https://protobuf.dev/
+
+Go. The Go Programming Language Documentation. https://go.dev/doc/
+
+Python Software Foundation. Python Documentation. https://docs.python.org/3/
+
+Node.js. Node.js Documentation. https://nodejs.org/docs/
+
+Git. Git Documentation. https://git-scm.com/doc/
+
+GitHub. GitHub Documentation. https://docs.github.com/
