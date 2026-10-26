@@ -39,20 +39,6 @@ Dosen Pengampu
 Muhammad Reza Zulman, S.ST., M.Sc
 </div>
 
-
-## LAPORAN PARADIGMA SISTEM UNTUK IT
-
-### Disusun Oleh:  
-Nama               : Mutiara Salsabila  
-NIM                : 2024903430060  
-Kelas              : TRKJ 3C
-
-
-### Program Studi Teknologi Rekayasa Komputer Jaringan
-### Jurusan Teknologi Informasi dan Komputer
-### Politeknik Negeri Lhokseumawe
-### 2026
-
 ## Daftar Isi
 - [Lembar Pengesahan](#lembar-pengesahan)
 - [Daftar Isi](#daftar-isi)
